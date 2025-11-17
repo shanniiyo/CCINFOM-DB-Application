@@ -1,0 +1,84 @@
+import java.util.ArrayList;
+
+public class StaffManager {
+    private ArrayList<Staff> staffList = new ArrayList<>();
+
+    public void addStaff(Staff s) {
+        staffList.add(s);
+        System.out.println("\nStaff added successfully: " + s.getName());
+    }
+
+    public Staff findStaff(String staffID) {
+        for (Staff s : staffList) {
+            if (s.getStaffID().equalsIgnoreCase(staffID)) {
+                return s;
+            }
+        }
+        return null;
+    }
+
+    public void viewStaff(String staffID) {
+        Staff s = findStaff(staffID);
+
+        if (s == null) {
+            System.out.println("Staff not found.");
+            return;
+        }
+
+        s.displayInfo();
+    }
+
+    public void listAllStaff() {
+        System.out.println("\n=== STAFF LIST ===");
+        for (Staff s : staffList) {
+            System.out.println(s.getStaffID() + " - " + s.getName() + " (" + (s.isActive() ? "Active" : "Inactive") + ")");
+        }
+    }
+
+    public void setStaffStatus(String staffID, boolean status) {
+        Staff s = findStaff(staffID);
+
+        if (s == null) {
+            System.out.println("Staff not found.");
+            return;
+        }
+
+        s.setActive(status);
+        System.out.println("Updated status for " + s.getName());
+    }
+
+    public void assignQuota(String staffID, double quota) {
+        Staff s = findStaff(staffID);
+
+        if (s == null) {
+            System.out.println("Staff not found.");
+            return;
+        }
+
+        s.setQuota(quota);
+        System.out.println("Quota updated.");
+    }
+
+    public void addSalesToStaff(String staffID, double sales) {
+        Staff s = findStaff(staffID);
+
+        if (s == null) {
+            System.out.println("Staff not found.");
+            return;
+        }
+
+        s.addSales(sales);
+        System.out.println("Sales updated.");
+    }
+
+    public void viewStaffSalesPerformance(String staffID) {
+        Staff s = findStaff(staffID);
+
+        if (s == null) {
+            System.out.println("Staff not found.");
+            return;
+        }
+
+        s.viewSalesPerformance();
+    }
+}
