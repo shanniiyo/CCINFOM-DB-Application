@@ -25,6 +25,22 @@ public class ProductReturn {
         this.purchaseDate = purchaseDate;
     }
 
+    // Getters
+    public Product getProduct() 
+    { return product; }
+    public Client getClient() 
+    { return client; }
+    public Staff getStaff() 
+    { return staff; }
+    public String getReason() 
+    { return reason; }
+    public int getQuantity() 
+    { return quantity; }
+    public LocalDate getTransactionDate() 
+    { return transactionDate; }
+    public LocalDate getPurchaseDate() 
+    { return purchaseDate; }
+
     // 1. VALIDATE RETURN REQUEST
 
     public void validateReturnRequest() {
