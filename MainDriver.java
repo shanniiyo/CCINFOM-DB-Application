@@ -19,8 +19,8 @@ public class MainDriver {
 
         // Supporting objects
         Supplier supplier = new Supplier("SUP01", "Mercury Pharma");
-        Client Watsons = new Client("CL01", "Watsons");
-        Staff emp = new Staff("ST01", "Employee 01", "Assistant Manager", true);
+        Client Watsons = new Client(1, "Watsons");
+        Staff emp = new Staff(1, "Employee 01", "Assistant Manager", true);
 
         System.out.println("\n=== INITIAL STOCK LEVEL ===");
         paracetamol.viewStockLevels();
@@ -98,6 +98,31 @@ public class MainDriver {
         report.generateReport(list);
 
         emp.viewSalesPerformance(500.00);
-    }
 
+        // Example objects (assume these come from DB or user input)
+        Product Bandage = new Product
+        ("1", "Bandage", 50, 100.0, LocalDate.now(), LocalDate.of(2026, 5, 1));
+        Staff emp1 = new Staff(1, "'Alice Santos'", "Medical Supply Clerk / Technician", true);
+
+        // Create ProductReturn object
+        ProductReturn returnObj = new ProductReturn(
+            null,                   // returnID will be auto-generated
+            LocalDate.now(),
+            Bandage,
+            Watsons,
+            emp1,
+            "Defective",
+            7,
+            LocalDate.now().minusDays(10) // purchase date 10 days ago
+        );
+
+        // Validate
+        returnObj.validateReturnRequest();
+
+        // Update stock levels
+        returnObj.updateStockLevels();
+
+        // Insert into database
+        ProductReturnDAO.insertReturn(returnObj);
+    }
 }
