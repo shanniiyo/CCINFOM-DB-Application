@@ -17,6 +17,7 @@ CREATE TABLE Product (
     Quantity       INT NOT NULL DEFAULT 0,
     Price          DECIMAL(10,2) NOT NULL,
     DateAdded      DATE NOT NULL,
+	ExpirationDate DATE NOT NULL,
     LowStockLimit  INT DEFAULT 10    
 );
 
@@ -171,5 +172,5 @@ INSERT INTO ClientMed (ClientID, ClientName, Address, ContactPerson, ContactInfo
   (9, 'Isabel Navarro', 'Customer Service Representative', 'Active', 30),
   (10, 'Juan dela Cruz', 'Medical Supply Clerk / Technician', 'Active', 45);
   
-  INSERT INTO Product (ProductID, Brand, Quantity, Price, DateAdded) VALUES 
-  (1, 'Bandage', 100, 50.00, '2025-11-17');
+  INSERT INTO Product (ProductID, Brand, Quantity, Price, DateAdded, ExpirationDate) VALUES 
+  (1, 'Bandage', 100, 50.00, '2025-11-17', '2026-11-17');
