@@ -1,4 +1,5 @@
-CREATE DATABASE  IF NOT EXISTS `MedicalSalesDB`;
+
+CREATE DATABASE MedicalSalesDB;
 USE MedicalSalesDB;
 
 CREATE TABLE ClientMed (
@@ -75,18 +76,20 @@ CREATE TABLE Sales (
 );
 
 CREATE TABLE ProductReturn (
-    ReturnID    INT  PRIMARY KEY,
-    ProductID   INT NOT NULL,
-    ClientID    INT NOT NULL,
-    StaffID     INT NOT NULL,
+    ReturnID    INT  PRIMARY KEY AUTO_INCREMENT,
+    ProductID   VARCHAR(20) NOT NULL,
+    ClientID    VARCHAR(20) NOT NULL,
+    StaffID     VARCHAR(20) NOT NULL,
     Reason      VARCHAR(255),
     Quantity    INT NOT NULL,
     ReturnDate  DATETIME NOT NULL,
+    PurchaseDate DATE NOT NULL,
 
     FOREIGN KEY (ProductID) REFERENCES Product(ProductID),
     FOREIGN KEY (ClientID)  REFERENCES ClientMed(ClientID),
     FOREIGN KEY (StaffID)   REFERENCES Staff(StaffID)
 );
+
 
 CREATE TABLE DeliveryOrder (
     OrderID          INT PRIMARY KEY,
@@ -154,3 +157,16 @@ INSERT INTO ClientMed (ClientID, ClientName, Address, ContactPerson, ContactInfo
   (22, 'Sta. Ana Healthcare Plus', 'Sta. Ana St, Pasig City, Metro Manila', 'Santiago Ana', '+63 941-901-2345'),
   (23, 'Trinity Marketing Inc', 'Trinity Tower, EDSA, Mandaluyong City, Metro Manila', 'Trisha Trinity', '+63 942-012-3456'),
   (24, 'Value-Rx Inc', 'Value Plaza, Congressional Ave, Quezon City, Metro Manila', 'Victor Rex', '+63 943-123-4567');
+  
+	INSERT INTO Staff (StaffID, Name, Credentials, Status, Quota) VALUES
+  (1, 'Alice Santos', 'Medical Supply Clerk / Technician', 'Active', 50),
+  (2, 'Brian Reyes', 'Store Executive/Manager', 'Active', 100),
+  (3, 'Catherine Cruz', 'Customer Service Representative', 'Active', 30),
+  (4, 'Daniel Lopez', 'Medical Supply Clerk / Technician', 'Active', 40),
+  (5, 'Eva Ramirez', 'Store Executive/Manager', 'Active', 80),
+  (6, 'Francis Villanueva', 'Customer Service Representative', 'Active', 25),
+  (7, 'Grace Morales', 'Medical Supply Clerk / Technician', 'Active', 35),
+  (8, 'Henry Aquino', 'Store Executive/Manager', 'Active', 90),
+  (9, 'Isabel Navarro', 'Customer Service Representative', 'Active', 30),
+  (10, 'Juan dela Cruz', 'Medical Supply Clerk / Technician', 'Active', 45);
+
