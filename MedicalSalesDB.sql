@@ -1,4 +1,4 @@
-CREATE DATABASE MedicalSalesDB;
+CREATE DATABASE  IF NOT EXISTS `MedicalSalesDB`;
 USE MedicalSalesDB;
 
 CREATE TABLE ClientMed (
@@ -71,7 +71,7 @@ CREATE TABLE Sales (
 
     FOREIGN KEY (StaffID)   REFERENCES Staff(StaffID),
     FOREIGN KEY (ProductID) REFERENCES Product(ProductID),
-    FOREIGN KEY (ClientID)  REFERENCES Client(ClientID)
+    FOREIGN KEY (ClientID)  REFERENCES ClientMed(ClientID)
 );
 
 CREATE TABLE ProductReturn (
@@ -84,7 +84,7 @@ CREATE TABLE ProductReturn (
     ReturnDate  DATETIME NOT NULL,
 
     FOREIGN KEY (ProductID) REFERENCES Product(ProductID),
-    FOREIGN KEY (ClientID)  REFERENCES Client(ClientID),
+    FOREIGN KEY (ClientID)  REFERENCES ClientMed(ClientID),
     FOREIGN KEY (StaffID)   REFERENCES Staff(StaffID)
 );
 
@@ -98,11 +98,11 @@ CREATE TABLE DeliveryOrder (
     DeliveryLocation VARCHAR(255),
     Status           VARCHAR(50),
 
-    FOREIGN KEY (ClientID) REFERENCES Client(ClientID),
+    FOREIGN KEY (ClientID) REFERENCES ClientMed(ClientID),
     FOREIGN KEY (ProductID) REFERENCES Product(ProductID)
 );
 
-INSERT INTO Client (ClientID, Name, Address, ContactPerson, ContactInfo) VALUES
+INSERT INTO ClientMed (ClientID, ClientName, Address, ContactPerson, ContactInfo) VALUES
   (1, 'Alabang Medical Center', 'Alabang-Zapote Road, Muntinlupa, Metro Manila', 'Dr. Anita Ty', '(02) 807-8189 / alabangmedicalcenter8@yahoo.com'),
   (2, 'AMSI Doctors Medical Center', 'Brgy. San Jose, City of Imus, Cavite', 'Maria Santos', '+63 917-234-5678'),
   (3, 'Asia Medic Hospital & Medical Center', 'Filinvest City, Alabang, Muntinlupa, Metro Manila', 'Jorge Garcia', '+63 2 8771-9000'),
