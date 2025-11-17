@@ -170,3 +170,6 @@ INSERT INTO ClientMed (ClientID, ClientName, Address, ContactPerson, ContactInfo
   (8, 'Henry Aquino', 'Store Executive/Manager', 'Active', 90),
   (9, 'Isabel Navarro', 'Customer Service Representative', 'Active', 30),
   (10, 'Juan dela Cruz', 'Medical Supply Clerk / Technician', 'Active', 45);
+  
+  INSERT INTO Product (ProductID, Brand, Quantity, Price, DateAdded) VALUES 
+  (1, 'Bandage', 100, 50.00, '2025-11-17');
