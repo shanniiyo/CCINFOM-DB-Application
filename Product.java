@@ -46,11 +46,23 @@ public class Product {
         { this.price = price; }
 
     // === BUSINESS METHODS ===
-    public void viewStockLevels() {
-        System.out.println("Product: " + brand + " | Stock: " + quantity + " | Expiration: " + expiration);
-    }
 
-    public void viewTransaction(InventoryTransaction transaction) {
+    public boolean isLowStock() {
+        return quantity < 10;   // or any threshold
+    }
+   public void viewStockLevels() {
+        System.out.println("=== Stock Information ===");
+        System.out.println("Product ID: " + productID);
+        System.out.println("Brand: " + brand);
+        System.out.println("Stock: " + quantity);
+        System.out.println("Expiration: " + expiration);
+
+        if (isLowStock()) {
+            System.out.println("LOW STOCK ALERT");
+        }
+        }
+    
+        public void viewTransaction(InventoryTransaction transaction) {
         System.out.println("=== Product Transaction Details ===");
         System.out.println("Transaction ID: " + transaction.getTransactionID());
         System.out.println("Product: " + this.brand);
@@ -60,3 +72,4 @@ public class Product {
         System.out.println("Date: " + transaction.getTransactionDate());
     }
 }
+
