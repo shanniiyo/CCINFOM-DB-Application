@@ -1,13 +1,13 @@
 public class Staff {
 
-    private String staffID;          // Primary Key
+    private int staffID;          // Primary Key
     private String name;
     private String credentials;      // e.g., Manager, Pharmacist, Admin
     private boolean activeStatus;    // true = active, false = inactive
     private double salesQuota;       // Default: 2000 per month
 
     // Constructor
-    public Staff(String staffID, String name, String credentials, boolean activeStatus) {
+    public Staff(int staffID, String name, String credentials, boolean activeStatus) {
         this.staffID = staffID;
         this.name = name;
         this.credentials = credentials;
@@ -16,7 +16,7 @@ public class Staff {
     }
 
     // Getters
-    public String getStaffID() {
+    public int getStaffID() {
         return staffID;
     }
 
