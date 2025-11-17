@@ -1,3 +1,4 @@
+DROP DATABASE MedicalSalesDB;
 
 CREATE DATABASE MedicalSalesDB;
 USE MedicalSalesDB;
@@ -11,7 +12,7 @@ CREATE TABLE ClientMed (
 );
 
 CREATE TABLE Product (
-    ProductID      INT PRIMARY KEY,
+    ProductID      VARCHAR(20) PRIMARY KEY,
     Brand          VARCHAR(150) NOT NULL,
     Quantity       INT NOT NULL DEFAULT 0,
     Price          DECIMAL(10,2) NOT NULL,
@@ -37,7 +38,7 @@ CREATE TABLE Staff (
 
 CREATE TABLE InventoryTransaction (
     TransactionID   INT PRIMARY KEY,
-    ProductID       INT NOT NULL,
+    ProductID       VARCHAR(20) NOT NULL,
     SupplierID      INT,
     StaffID         INT,
     Quantity        INT NOT NULL,
@@ -52,7 +53,7 @@ CREATE TABLE InventoryTransaction (
 
 CREATE TABLE Procurement (
     ProcurementID   INT PRIMARY KEY,
-    ProductID       INT NOT NULL,
+    ProductID       VARCHAR(20) NOT NULL,
     SupplierID      INT NOT NULL,
     Quantity        INT NOT NULL,
     TransactionDate DATETIME NOT NULL,
@@ -64,7 +65,7 @@ CREATE TABLE Procurement (
 CREATE TABLE Sales (
     SalesID     INT PRIMARY KEY,
     StaffID     INT NOT NULL,
-    ProductID   INT NOT NULL,
+    ProductID   VARCHAR(20) NOT NULL,
     ClientID    INT NOT NULL,
     Quantity    INT NOT NULL,
     TotalPrice  DECIMAL(12,2) NOT NULL,
@@ -76,10 +77,10 @@ CREATE TABLE Sales (
 );
 
 CREATE TABLE ProductReturn (
-    ReturnID    INT  PRIMARY KEY AUTO_INCREMENT,
+    ReturnID    INT PRIMARY KEY AUTO_INCREMENT,
     ProductID   VARCHAR(20) NOT NULL,
-    ClientID    VARCHAR(20) NOT NULL,
-    StaffID     VARCHAR(20) NOT NULL,
+    ClientID    INT NOT NULL,
+    StaffID     INT NOT NULL,
     Reason      VARCHAR(255),
     Quantity    INT NOT NULL,
     ReturnDate  DATETIME NOT NULL,
@@ -94,7 +95,7 @@ CREATE TABLE ProductReturn (
 CREATE TABLE DeliveryOrder (
     OrderID          INT PRIMARY KEY,
     ClientID         INT NOT NULL,
-    ProductID        INT NOT NULL,
+    ProductID        VARCHAR(20) NOT NULL,
     Quantity         INT NOT NULL,
     Price            DECIMAL(10,2) NOT NULL,
     OrderDate        DATETIME NOT NULL,
@@ -169,4 +170,3 @@ INSERT INTO ClientMed (ClientID, ClientName, Address, ContactPerson, ContactInfo
   (8, 'Henry Aquino', 'Store Executive/Manager', 'Active', 90),
   (9, 'Isabel Navarro', 'Customer Service Representative', 'Active', 30),
   (10, 'Juan dela Cruz', 'Medical Supply Clerk / Technician', 'Active', 45);
-
