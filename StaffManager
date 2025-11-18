@@ -8,16 +8,16 @@ public class StaffManager {
         System.out.println("\nStaff added successfully: " + s.getName());
     }
 
-    public Staff findStaff(String staffID) {
+    public Staff findStaff(int staffID) {
         for (Staff s : staffList) {
-            if (s.getStaffID().equalsIgnoreCase(staffID)) {
+            if (s.getStaffID() == staffID) {
                 return s;
             }
         }
         return null;
     }
 
-    public void viewStaff(String staffID) {
+    public void viewStaff(int staffID) {
         Staff s = findStaff(staffID);
 
         if (s == null) {
@@ -31,11 +31,12 @@ public class StaffManager {
     public void listAllStaff() {
         System.out.println("\n=== STAFF LIST ===");
         for (Staff s : staffList) {
-            System.out.println(s.getStaffID() + " - " + s.getName() + " (" + (s.isActive() ? "Active" : "Inactive") + ")");
+            System.out.println(s.getStaffID() + " - " + s.getName() + 
+                " (" + (s.isActive() ? "Active" : "Inactive") + ")");
         }
     }
 
-    public void setStaffStatus(String staffID, boolean status) {
+    public void setStaffStatus(int staffID, boolean status) {
         Staff s = findStaff(staffID);
 
         if (s == null) {
@@ -47,7 +48,7 @@ public class StaffManager {
         System.out.println("Updated status for " + s.getName());
     }
 
-    public void assignQuota(String staffID, double quota) {
+    public void assignQuota(int staffID, double quota) {
         Staff s = findStaff(staffID);
 
         if (s == null) {
@@ -59,7 +60,7 @@ public class StaffManager {
         System.out.println("Quota updated.");
     }
 
-    public void addSalesToStaff(String staffID, double sales) {
+    public void addSalesToStaff(int staffID, double sales) {
         Staff s = findStaff(staffID);
 
         if (s == null) {
@@ -68,10 +69,10 @@ public class StaffManager {
         }
 
         s.addSales(sales);
-        System.out.println("Sales updated.");
+        System.out.println("Sales updated for " + s.getName());
     }
 
-    public void viewStaffSalesPerformance(String staffID) {
+    public void viewStaffSalesPerformance(int staffID) {
         Staff s = findStaff(staffID);
 
         if (s == null) {
