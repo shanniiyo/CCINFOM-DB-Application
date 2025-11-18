@@ -15,7 +15,7 @@ public class SupplierDAO {
 
             if (rs.next()) {
                 return new Supplier(
-                        rs.getInt("SupplierID"),
+                        rs.getString("SupplierID"),
                         rs.getString("Name")
                 );
             }
@@ -37,7 +37,7 @@ public class SupplierDAO {
 
             while (rs.next()) {
                 suppliers.add(new Supplier(
-                        rs.getInt("SupplierID"),
+                        rs.getString("SupplierID"),
                         rs.getString("Name")
                 ));
             }
