@@ -10,14 +10,14 @@ public class Product {
             // dateAdded DATE
             // expiration DATE
 
-    private String productID;
+    private int productID;
     private String brand;
     private int quantity;
     private double price;
     private LocalDate dateAdded;
     private LocalDate expiration;
 
-    public Product(String productID, String brand, int quantity, double price, LocalDate dateAdded, LocalDate expiration) {
+    public Product(int productID, String brand, int quantity, double price, LocalDate dateAdded, LocalDate expiration) {
         this.productID = productID;
         this.brand = brand;
         this.quantity = quantity;
@@ -27,7 +27,7 @@ public class Product {
     }
 
     // === GETTERS AND SETTERS ===
-    public String getProductID() 
+    public int getProductID() 
         { return productID; }
     public String getBrand() 
         { return brand; }
