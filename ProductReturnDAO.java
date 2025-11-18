@@ -14,7 +14,7 @@ String updateProductSql = "UPDATE Product SET Quantity = ? WHERE ProductID = ?";
              PreparedStatement pstmt = conn.prepareStatement(sql);
              PreparedStatement updateStmt = conn.prepareStatement(updateProductSql)) {
 
-            pstmt.setString(1, returnObj.getProduct().getProductID());
+            pstmt.setInt(1, returnObj.getProduct().getProductID());
             pstmt.setInt(2, returnObj.getClient().getClientID());
             pstmt.setInt(3, returnObj.getStaff().getStaffID());
             pstmt.setString(4, returnObj.getReason());
@@ -33,7 +33,7 @@ String updateProductSql = "UPDATE Product SET Quantity = ? WHERE ProductID = ?";
                 int newQuantity = returnObj.getProduct().getQuantity() + returnObj.getQuantity();
 
                 updateStmt.setInt(1, newQuantity);
-                updateStmt.setString(2, returnObj.getProduct().getProductID());  // match your parameter style
+                updateStmt.setInt(2, returnObj.getProduct().getProductID());  // match your parameter style
                 int rowsUpdated = updateStmt.executeUpdate();
 
                 System.out.println("Product inventory updated. New quantity: " + newQuantity +
