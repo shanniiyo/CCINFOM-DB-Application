@@ -1,18 +1,20 @@
 public class Staff {
 
-    private int staffID;          // Primary Key
+    private int staffID;          
     private String name;
-    private String credentials;      // e.g., Manager, Pharmacist, Admin
-    private boolean activeStatus;    // true = active, false = inactive
-    private double salesQuota;       // Default: 2000 per month
+    private String credentials;     
+    private boolean active;     
+    private double salesQuota;  
+    private double totalSales;  
 
     // Constructor
-    public Staff(int staffID, String name, String credentials, boolean activeStatus) {
+    public Staff(int staffID, String name, String credentials, boolean active) {
         this.staffID = staffID;
         this.name = name;
         this.credentials = credentials;
-        this.activeStatus = activeStatus;
-        this.salesQuota = 2000.0;    // Default monthly quota
+        this.active = active;
+        this.salesQuota = 2000.0;    
+        this.totalSales = 0.0;
     }
 
     // Getters
@@ -28,66 +30,55 @@ public class Staff {
         return credentials;
     }
 
-    public boolean isActiveStatus() {
-        return activeStatus;
+    public boolean isActive() {
+        return active;
     }
 
     public double getSalesQuota() {
         return salesQuota;
     }
 
-    // Setters (optional)
-    public void setActiveStatus(boolean activeStatus) {
-        this.activeStatus = activeStatus;
+    public double getTotalSales() {
+        return totalSales;
     }
 
-    public void setSalesQuota(double salesQuota) {
-        this.salesQuota = salesQuota;
+    // Setters
+    public void setActive(boolean active) {
+        this.active = active;
     }
 
-    // ============================================
-    // Database Linked Methods
-    // ============================================
+    public void setQuota(double quota) {
+        this.salesQuota = quota;
+    }
 
-    /* // Placeholder — connect this to StaffDAO / TransactionDAO
-    public void viewSalesPerformance() {
-        System.out.println("\n=== SALES PERFORMANCE REPORT ===");
-        System.out.println("Staff ID: " + staffID);
+    // Add sales to staff total
+    public void addSales(double sales) {
+        this.totalSales += sales;
+    }
+
+    // Display Staff Info
+    public void displayInfo() {
+        System.out.println("\n=== STAFF INFO ===");
+        System.out.println("ID: " + staffID);
         System.out.println("Name: " + name);
-        System.out.println("Monthly Quota: " + salesQuota);
+        System.out.println("Credentials: " + credentials);
+        System.out.println("Status: " + (active ? "Active" : "Inactive"));
+        System.out.println("Sales Quota: ₱" + salesQuota);
+        System.out.println("Total Sales: ₱" + totalSales);
+    }
 
-        // will calculate:
-        // totalSales = SUM(transaction.quantity * product.price)
-        // retrieved via InventoryTransactionDAO
-
-        System.out.println("Total Sales: [Retrieve from DB]");
-        System.out.println("Status: [Meeting Quota / Below Quota]");
-  }  */  
-
-  public void viewSalesPerformance(double monthlySales) {
-
+    // Performance Report
+    public void viewSalesPerformance() {
         System.out.println("\n===== SALES PERFORMANCE =====");
         System.out.println("Staff: " + name + " (" + staffID + ")");
-        System.out.println("Credentials: " + credentials);
-        System.out.println("Monthly Sales: ₱" + monthlySales);
+        System.out.println("Monthly Sales: ₱" + totalSales);
         System.out.println("Sales Quota: ₱" + salesQuota);
 
-        if (monthlySales >= salesQuota) {
+        if (totalSales >= salesQuota) {
             System.out.println("STATUS: Quota Achieved!");
         } else {
-            double lacking = salesQuota - monthlySales;
+            double lacking = salesQuota - totalSales;
             System.out.println("STATUS: Quota NOT met. Lacking: ₱" + lacking);
         }
-    }
-
-    // Placeholder — to be linked to InventoryTransactionDAO
-    public void viewBranchTransactions() {
-        System.out.println("\n=== BRANCH TRANSACTIONS HANDLED BY STAFF ===");
-        System.out.println("Staff ID: " + staffID);
-        System.out.println("Name: " + name);
-
-        // Later:
-        // SELECT * FROM InventoryTransaction WHERE staffID = ?
-        System.out.println("Transactions: [Retrieve from DB]");
     }
 }
