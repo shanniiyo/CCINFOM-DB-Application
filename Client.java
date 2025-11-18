@@ -14,11 +14,11 @@ public class Client {
         this.contactInfo = contactInfo;
     }
 
-    public viewOrders(){
+    public void viewOrders(){
         
     }
 
-    public viewPaymentHistory(){
+    public void viewPaymentHistory(){
 
     }
 }
