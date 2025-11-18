@@ -9,4 +9,12 @@ public class Client {
         this.clientID = clientID;
         this.name = name;
     }
+
+    public viewOrders(){
+        
+    }
+
+    public viewPaymentHistory(){
+
+    }
 }
