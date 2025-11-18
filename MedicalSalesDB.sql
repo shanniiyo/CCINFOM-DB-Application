@@ -23,7 +23,7 @@ CREATE TABLE Product (
 
 CREATE TABLE Supplier (
     SupplierID     INT PRIMARY KEY,
-    Name           VARCHAR(150) NOT NULL,
+    SupplierName   VARCHAR(150) NOT NULL,
     Address        VARCHAR(255),
     ContactPerson  VARCHAR(150),
     ContactInfo    VARCHAR(100)
@@ -31,9 +31,9 @@ CREATE TABLE Supplier (
 
 CREATE TABLE Staff (
     StaffID        INT PRIMARY KEY,
-    Name           VARCHAR(150) NOT NULL,
+    StaffName      VARCHAR(150) NOT NULL,
     Credentials    VARCHAR(255),
-    Status         ENUM('Active', 'Inactive') DEFAULT 'Active',
+    StaffStatus    ENUM('Active', 'Inactive') DEFAULT 'Active',
     Quota          INT DEFAULT 0
 );
 
@@ -44,7 +44,7 @@ CREATE TABLE InventoryTransaction (
     StaffID         INT,
     Quantity        INT NOT NULL,
     TransactionType ENUM('Incoming','Outgoing') NOT NULL,
-    Status          VARCHAR(50),
+    TransStatus     VARCHAR(50),
     TransactionDate DATETIME NOT NULL,
 
     FOREIGN KEY (ProductID)  REFERENCES Product(ProductID),
@@ -134,7 +134,7 @@ INSERT INTO ClientMed (ClientID, ClientName, Address, ContactPerson, ContactInfo
   
   
   
-  INSERT INTO Supplier (SupplierID, Name, Address, ContactPerson, ContactInfo) VALUES
+INSERT INTO Supplier (SupplierID, SupplierName, Address, ContactPerson, ContactInfo) VALUES
   (1, 'Amhsco Enterprises', 'MacArthur Highway, San Fernando, Pampanga, 2000', 'Angela Perez', '+63 45 961-5513'),
   (2, 'JN Asistio', 'Blk 9 Lot 8 Opal St, Casa Filipina Subd, Fourth Estate, Sucat, Parañaque, 1700', 'Juan Asistio', '0998-580-9438 / jenny@jasistio.com'),
   (3, 'B Braun Medical Supplies', '15/F Sun Life Centre, 5th Avenue corner Rizal Drive, Bonifacio Global City, Taguig, Metro Manila', 'Beatrice Braun', '+63 2 588-5600 / info.ph@bbraun.com'),
@@ -160,7 +160,7 @@ INSERT INTO ClientMed (ClientID, ClientName, Address, ContactPerson, ContactInfo
   (23, 'Trinity Marketing Inc', 'Trinity Tower, EDSA, Mandaluyong City, Metro Manila', 'Trisha Trinity', '+63 942-012-3456'),
   (24, 'Value-Rx Inc', 'Value Plaza, Congressional Ave, Quezon City, Metro Manila', 'Victor Rex', '+63 943-123-4567');
   
-	INSERT INTO Staff (StaffID, Name, Credentials, Status, Quota) VALUES
+INSERT INTO Staff (StaffID, StaffName, Credentials, StaffStatus, Quota) VALUES
   (1, 'Alice Santos', 'Medical Supply Clerk / Technician', 'Active', 50),
   (2, 'Brian Reyes', 'Store Executive/Manager', 'Active', 100),
   (3, 'Catherine Cruz', 'Customer Service Representative', 'Active', 30),
@@ -172,5 +172,44 @@ INSERT INTO ClientMed (ClientID, ClientName, Address, ContactPerson, ContactInfo
   (9, 'Isabel Navarro', 'Customer Service Representative', 'Active', 30),
   (10, 'Juan dela Cruz', 'Medical Supply Clerk / Technician', 'Active', 45);
   
-  INSERT INTO Product (ProductID, Brand, Quantity, Price, DateAdded, ExpirationDate) VALUES 
-  (1, 'Bandage', 100, 50.00, '2025-11-17', '2026-11-17');
+INSERT INTO Product (ProductID, Brand, Quantity, Price, DateAdded, ExpirationDate) VALUES 
+  (1, 'Bandage', 100, 50.00, '2025-11-17', '2026-11-17'),
+  ('2', 'Fujifilm Dry film HT 14x17', 10, 11000.00, '2025-11-18', '2026-06-25'),
+  ('3', 'Agfa Drystar DT2B 14x17', 10, 22000.00, '2025-11-18', '2028-10-14'),
+  ('4', 'Sony Thermal paper Type I/S', 100, 480.00, '2025-11-18', '2027-04-09'),
+  ('5', 'Nitrilecare Nitrile Gloves S (Powderfree)', 100, 225.00, '2025-11-18', '2027-11-09'),
+  ('6', 'Nitrilecare Nitrile Gloves M (Powderfree)', 100, 225.00, '2025-11-18', '2028-09-02'),
+  ('7', 'Nitrilecare Nitrile Gloves L (Powderfree)', 100, 225.00, '2025-11-18', '2028-08-01'),
+  ('8', 'Schullermed Nitrile Gloves S (Powderfree)', 100, 190.00, '2025-11-18', '2028-02-12'),
+  ('9', 'Schullermed Nitrile Gloves M (Powderfree)', 100, 190.00, '2025-11-18', '2028-09-15'),
+  ('10', 'Schullermed Nitrile Gloves L (Powderfree)', 100, 190.00, '2025-11-18', '2026-07-27'),
+  ('11', 'Sri Trang Nitrile Gloves S (Powderfree)', 100, 190.00, '2025-11-18', '2027-05-19'),
+  ('12', 'Rubbercare Latex Gloves S (Powderfree)', 100, 230.00, '2025-11-18', '2027-04-12'),
+  ('13', 'Schullermed Latex Gloves M (Powderfree)', 100, 185.00, '2025-11-18', '2026-11-14'),
+  ('14', 'Sri Trang Latex Gloves L (Powderfree)', 100, 180.00, '2025-11-18', '2026-10-10'),
+  ('15', 'ORCare Surgical Gloves 7.5 (Powderfree)', 50, 1500.00, '2025-11-18', '2028-01-20'),
+  ('16', 'Unimex Surgical Gloves 7.5 (Powderfree)', 50, 1000.00, '2025-11-18', '2028-04-20'),
+  ('17', 'Careplus Facemask Earloop', 200, 70.00, '2025-11-18', '2028-04-29'),
+  ('18', 'IV Starter Kit', 100, 85.00, '2025-11-18', '2027-10-09'),
+  ('19', 'Syphilis Ab Rapid Test, Ds', 30, 42.20, '2025-11-18', '2028-01-08'),
+  ('20', 'Syphilis Ab Combo Rapid Test, Cs', 30, 79.00, '2025-11-18', '2028-01-22'),
+  ('21', 'HIV/Syphilis Ab Combo Rapid Test, Cs', 30, 131.67, '2025-11-18', '2027-01-08'),
+  ('22', 'HIV/Syphilis/HBV/HCV Panel Rapid Test, Cs', 20, 224.00, '2025-11-18', '2027-12-14'),
+  ('23', 'Dengue IgG/IgM Combo Rapid Test, Cs', 30, 237.00, '2025-11-18', '2028-11-09'),
+  ('24', 'Duo Dengue Ag-IgG/IgM Rapid Test, Cs', 10, 461.00, '2025-11-18', '2027-08-16'),
+  ('25', 'Dengue Ag Rapid Test, Cs', 30, 250.00, '2025-11-18', '2027-10-18'),
+  ('26', 'HAV IgM Rapid Test, Cs', 30, 263.33, '2025-11-18', '2028-01-27'),
+  ('27', 'HAV IgG/IgM Combo Rapid Test, Cs', 30, 316.00, '2025-11-18', '2028-09-02'),
+  ('28', 'Leptospira IgG/IgM Combo Rapid Test, Cs', 30, 329.00, '2025-11-18', '2026-09-02'),
+  ('29', 'Malaria Pf/Pv Ab Combo Rapid Test, Cs', 30, 131.67, '2025-11-18', '2026-08-01'),
+  ('30', 'Malaria Pf/Pv Ag Rapid Test, Cs', 30, 131.67, '2025-11-18', '2027-06-25'),
+  ('31', 'Malaria Pf/Pan Ag Rapid Test, Cs', 30, 171.00, '2025-11-18', '2027-12-07'),
+  ('32', 'Typhoid IgG/IgM Combo Rapid Test, Cs', 30, 184.33, '2025-11-18', '2028-07-28'),
+  ('33', 'Rotavirus Ag Rapid Test, Cs', 25, 210.80, '2025-11-18', '2028-08-14'),
+  ('34', 'Dosifix Safeset IV Set', 100, 323.20, '2025-11-18', '2026-06-18'),
+  ('35', 'Intrafix Primeline Basic IV Set', 100, 69.70, '2025-11-18', '2028-04-16'),
+  ('36', 'Intrafix Safeset Caresite IV Set', 100, 150.70, '2025-11-18', '2028-04-15'),
+  ('37', 'Introcan Safety IV Cannula G.18', 50, 89.80, '2025-11-18', '2027-09-21'),
+  ('38', 'Sangofix IV Set', 100, 81.10, '2025-11-18', '2028-01-18'),
+  ('39', 'Spinocan IV Set G. 23', 50, 90.00, '2025-11-18', '2028-04-18');
+
