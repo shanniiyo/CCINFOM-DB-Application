@@ -150,7 +150,7 @@ public class MainDriver {
         );
 
         Supplier supplier = new Supplier("SUP01", "Mercury Pharma");
-        Client watsons = new Client(1, "Watsons");
+        Client watsons = new Client(1, "Watsons", null, null, null);
         Staff emp = new Staff(1, "Employee 01", "Assistant Manager", true);
 
         // Storage (temporary; replace with DB later)
