@@ -2,7 +2,7 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class Client {
-    private String clientID;
+    private int clientID;
     private String name;
     private String address;
     private String contactPerson;
@@ -11,7 +11,7 @@ public class Client {
     private List<Order> orders = new ArrayList<>();
     private List<Payment> payments = new ArrayList<>();
 
-    public Client(String clientID, String name, String address,
+    public Client(Integer clientID, String name, String address,
                   String contactPerson, String contactInfo) {
         this.clientID = clientID;
         this.name = name;
@@ -37,4 +37,9 @@ public class Client {
             System.out.println(payment.toString());
         }
     }
+
+	public int getClientID() {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'getClientID'");
+	}
 }
