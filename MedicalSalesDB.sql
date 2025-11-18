@@ -12,18 +12,18 @@ CREATE TABLE ClientMed (
 );
 
 CREATE TABLE Product (
-    ProductID      VARCHAR(20) PRIMARY KEY,
+    ProductID      INT NOT NULL PRIMARY KEY,
     Brand          VARCHAR(150) NOT NULL,
     Quantity       INT NOT NULL DEFAULT 0,
     Price          DECIMAL(10,2) NOT NULL,
     DateAdded      DATE NOT NULL,
-	ExpirationDate DATE NOT NULL,
+    ExpirationDate DATE NOT NULL,
     LowStockLimit  INT DEFAULT 10    
 );
 
 CREATE TABLE Supplier (
     SupplierID     INT PRIMARY KEY,
-    SupplierName   VARCHAR(150) NOT NULL,
+    Name           VARCHAR(150) NOT NULL,
     Address        VARCHAR(255),
     ContactPerson  VARCHAR(150),
     ContactInfo    VARCHAR(100)
@@ -31,20 +31,20 @@ CREATE TABLE Supplier (
 
 CREATE TABLE Staff (
     StaffID        INT PRIMARY KEY,
-    StaffName      VARCHAR(150) NOT NULL,
+    Name           VARCHAR(150) NOT NULL,
     Credentials    VARCHAR(255),
-    StaffStatus    ENUM('Active', 'Inactive') DEFAULT 'Active',
+    Status         ENUM('Active', 'Inactive') DEFAULT 'Active',
     Quota          INT DEFAULT 0
 );
 
 CREATE TABLE InventoryTransaction (
     TransactionID   INT PRIMARY KEY,
-    ProductID       VARCHAR(20) NOT NULL,
+    ProductID       INT NOT NULL,
     SupplierID      INT,
     StaffID         INT,
     Quantity        INT NOT NULL,
     TransactionType ENUM('Incoming','Outgoing') NOT NULL,
-    TransStatus     VARCHAR(50),
+    Status          VARCHAR(50),
     TransactionDate DATETIME NOT NULL,
 
     FOREIGN KEY (ProductID)  REFERENCES Product(ProductID),
@@ -54,7 +54,7 @@ CREATE TABLE InventoryTransaction (
 
 CREATE TABLE Procurement (
     ProcurementID   INT PRIMARY KEY,
-    ProductID       VARCHAR(20) NOT NULL,
+    ProductID       INT NOT NULL,
     SupplierID      INT NOT NULL,
     Quantity        INT NOT NULL,
     TransactionDate DATETIME NOT NULL,
@@ -66,7 +66,7 @@ CREATE TABLE Procurement (
 CREATE TABLE Sales (
     SalesID     INT PRIMARY KEY,
     StaffID     INT NOT NULL,
-    ProductID   VARCHAR(20) NOT NULL,
+    ProductID   INT NOT NULL,
     ClientID    INT NOT NULL,
     Quantity    INT NOT NULL,
     TotalPrice  DECIMAL(12,2) NOT NULL,
@@ -79,7 +79,7 @@ CREATE TABLE Sales (
 
 CREATE TABLE ProductReturn (
     ReturnID    INT PRIMARY KEY AUTO_INCREMENT,
-    ProductID   VARCHAR(20) NOT NULL,
+    ProductID   INT NOT NULL,
     ClientID    INT NOT NULL,
     StaffID     INT NOT NULL,
     Reason      VARCHAR(255),
@@ -96,7 +96,7 @@ CREATE TABLE ProductReturn (
 CREATE TABLE DeliveryOrder (
     OrderID          INT PRIMARY KEY,
     ClientID         INT NOT NULL,
-    ProductID        VARCHAR(20) NOT NULL,
+    ProductID        INT NOT NULL,
     Quantity         INT NOT NULL,
     Price            DECIMAL(10,2) NOT NULL,
     OrderDate        DATETIME NOT NULL,
@@ -134,7 +134,7 @@ INSERT INTO ClientMed (ClientID, ClientName, Address, ContactPerson, ContactInfo
   
   
   
-INSERT INTO Supplier (SupplierID, SupplierName, Address, ContactPerson, ContactInfo) VALUES
+  INSERT INTO Supplier (SupplierID, Name, Address, ContactPerson, ContactInfo) VALUES
   (1, 'Amhsco Enterprises', 'MacArthur Highway, San Fernando, Pampanga, 2000', 'Angela Perez', '+63 45 961-5513'),
   (2, 'JN Asistio', 'Blk 9 Lot 8 Opal St, Casa Filipina Subd, Fourth Estate, Sucat, Parañaque, 1700', 'Juan Asistio', '0998-580-9438 / jenny@jasistio.com'),
   (3, 'B Braun Medical Supplies', '15/F Sun Life Centre, 5th Avenue corner Rizal Drive, Bonifacio Global City, Taguig, Metro Manila', 'Beatrice Braun', '+63 2 588-5600 / info.ph@bbraun.com'),
@@ -160,7 +160,7 @@ INSERT INTO Supplier (SupplierID, SupplierName, Address, ContactPerson, ContactI
   (23, 'Trinity Marketing Inc', 'Trinity Tower, EDSA, Mandaluyong City, Metro Manila', 'Trisha Trinity', '+63 942-012-3456'),
   (24, 'Value-Rx Inc', 'Value Plaza, Congressional Ave, Quezon City, Metro Manila', 'Victor Rex', '+63 943-123-4567');
   
-INSERT INTO Staff (StaffID, StaffName, Credentials, StaffStatus, Quota) VALUES
+	INSERT INTO Staff (StaffID, Name, Credentials, Status, Quota) VALUES
   (1, 'Alice Santos', 'Medical Supply Clerk / Technician', 'Active', 50),
   (2, 'Brian Reyes', 'Store Executive/Manager', 'Active', 100),
   (3, 'Catherine Cruz', 'Customer Service Representative', 'Active', 30),
@@ -173,7 +173,7 @@ INSERT INTO Staff (StaffID, StaffName, Credentials, StaffStatus, Quota) VALUES
   (10, 'Juan dela Cruz', 'Medical Supply Clerk / Technician', 'Active', 45);
   
 INSERT INTO Product (ProductID, Brand, Quantity, Price, DateAdded, ExpirationDate) VALUES 
-  (1, 'Bandage', 100, 50.00, '2025-11-17', '2026-11-17'),
+  ('1', 'Bandage', 100, 50.00, '2025-11-17', '2026-11-17'),
   ('2', 'Fujifilm Dry film HT 14x17', 10, 11000.00, '2025-11-18', '2026-06-25'),
   ('3', 'Agfa Drystar DT2B 14x17', 10, 22000.00, '2025-11-18', '2028-10-14'),
   ('4', 'Sony Thermal paper Type I/S', 100, 480.00, '2025-11-18', '2027-04-09'),
@@ -212,4 +212,3 @@ INSERT INTO Product (ProductID, Brand, Quantity, Price, DateAdded, ExpirationDat
   ('37', 'Introcan Safety IV Cannula G.18', 50, 89.80, '2025-11-18', '2027-09-21'),
   ('38', 'Sangofix IV Set', 100, 81.10, '2025-11-18', '2028-01-18'),
   ('39', 'Spinocan IV Set G. 23', 50, 90.00, '2025-11-18', '2028-04-18');
-
