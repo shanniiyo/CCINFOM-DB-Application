@@ -4,6 +4,9 @@ public class Client {
     private String address;
     private String contactPerson;
     private String contactInfo;
+    
+    private List<Order> orders = new ArrayList<>();
+    private List<Order> orders = new ArrayList<>();
 
     public Client(String clientID, String name, String address,
                   String contactPerson, String contactInfo) {
