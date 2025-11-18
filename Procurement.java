@@ -12,5 +12,12 @@ public class Procurement {
         this.quantity = quantity;
         this.transactionDate = transactionDate;
     }
+    
+    
+    public int getProcurementID() { return procurementID; }
+    public int getProductID() { return productID; }
+    public int getSupplierID() { return supplierID; }
+    public int getQuantity() { return quantity; }
+    public LocalDate getTransactionDate() { return transactionDate; }
 
 }
