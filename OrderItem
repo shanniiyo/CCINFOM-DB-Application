@@ -16,6 +16,6 @@ public class OrderItem {
 
     
     public String toString() {
-        return product.getName() + " | Qty: " + quantity + " | Total: ₱" + getTotal();
+        return product.getProductID() + " | Qty: " + quantity + " | Total: ₱" + getTotal();
     }
 }
