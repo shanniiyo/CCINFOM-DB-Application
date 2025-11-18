@@ -1,13 +1,13 @@
 public class Supplier {
-    private String supplierID;
+    private int supplierID;
     private String name;
 
-    public Supplier(String supplierID, String name) {
+    public Supplier(int supplierID, String name) {
         this.supplierID = supplierID;
         this.name = name;
     }
 
-    public String getSupplierID() { return supplierID; }
+    public int getSupplierID() { return supplierID; }
     public String getName() { return name; }
 }
 
