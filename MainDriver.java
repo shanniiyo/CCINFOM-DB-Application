@@ -141,12 +141,12 @@ public class MainDriver {
 
         // Sample data (normally from DB)
         Product paracetamol = new Product(
-                "P001",
+                1,
                 "Paracetamol 500mg",
                 100,
                 5.00,
                 LocalDate.now(),
-                LocalDate.of(2026, 5, 1)
+                LocalDate.of(2026, 5, 11)
         );
 
         Supplier supplier = new Supplier("SUP01", "Mercury Pharma");
@@ -322,7 +322,7 @@ public class MainDriver {
         System.out.println("\n=== PRODUCT RETURN ===");
 
         System.out.print("Enter Product ID: ");
-        String productID = getStringInput();
+        int productID = getIntInput();
 
         System.out.print("Enter Product Name: ");
         String brand = getStringInput();
