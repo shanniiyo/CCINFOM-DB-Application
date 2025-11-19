@@ -26,10 +26,10 @@ public class ProcurementDAO {
             }
 
             // Update Product Quantity
-            Product product = ProductDAO.getProductByID(procurement.getProductID());
+            Product product = InventoryDAO.getProductByID(procurement.getProductID());
             if (product != null) {
                 int newQty = product.getQuantity() + addedQty;
-                ProductDAO.updateProductQuantity(procurement.getProductID(), newQty);
+                InventoryDAO.updateProductQuantity(procurement.getProductID(), newQty);
             }
 
             conn.commit();
