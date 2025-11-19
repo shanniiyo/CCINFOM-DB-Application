@@ -3,18 +3,17 @@ import java.util.ArrayList;
 
 public class Client {
     private int clientID;
-    private String name;
+    private String clientName;
     private String address;
     private String contactPerson;
     private String contactInfo;
     
     private List<Order> orders = new ArrayList<>();
-    private List<Payment> payments = new ArrayList<>();
 
-    public Client(Integer clientID, String name, String address,
+    public Client(int clientID, String clientName, String address,
                   String contactPerson, String contactInfo) {
         this.clientID = clientID;
-        this.name = name;
+        this.clientName = clientName;
         this.address = address;
         this.contactPerson = contactPerson;
         this.contactInfo = contactInfo;
@@ -29,17 +28,39 @@ public class Client {
         }
     }
 
-    public void viewPaymentHistory(){
-        if (payments.isEmpty()){
-            System.out.println("No payments made");
-        }
-        for (Payment payment : payments){
-            System.out.println(payment.toString());
-        }
+    public int getClientID() {
+        return this.clientID;
     }
 
-	public int getClientID() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'getClientID'");
-	}
+    public String getClientName() {
+        return clientName;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public String getContactPerson() {
+        return contactPerson;
+    }
+
+    public String getContactInfo() {
+        return contactInfo;
+    }
+
+    public void setClientName(String clientName) {
+        this.clientName = clientName;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setContactPerson(String contactPerson) {
+        this.contactPerson = contactPerson;
+    }
+
+    public void setContactInfo(String contactInfo) {
+        this.contactInfo = contactInfo;
+    }
 }
